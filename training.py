@@ -7,10 +7,10 @@ from sklearn.preprocessing import StandardScaler
 import pickle
 import joblib
 
-#학습할 csv 파일
+#training dat file
 csv_name="output.csv"
 
-#data load
+#load data
 data=pd.read_csv(csv_name,header=None)
 Y=data.loc[:,0]
 Y=pd.Series.tolist(Y)
@@ -32,15 +32,17 @@ scaler.fit(x_train)
 train_x_scaled =scaler.transform(x_train)
 test_x_scaled = scaler.transform(x_test)
 
-clf = svm.SVC()
+clf = svm.SVC(C=100,gamma=0.001)
 clf.fit(train_x_scaled, y_train)
 score=clf.score(test_x_scaled, y_test)
-print(score)
+print("model accuracy:",score)
 
-pre=clf.predict(test_x_scaled)
-
-print(pre)
+#pre=clf.predict(test_x_scaled)
+#print(pre)
 
 joblib.dump(clf, 'trained_svm.pkl')
 
 joblib.dump(scaler,'trained_scaler.pkl')
+
+#result
+print("saved trained svm model")

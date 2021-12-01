@@ -15,5 +15,10 @@ scaler=joblib.load('trained_scaler.pkl')
 parsed=scaler.transform(parsed)
 pre=clf.predict(parsed)
 
-#예측 확인
-print(pre)
+#print prediction
+for i in range(len(pre)):
+	if pre[i]==0:
+		print("file",i,": malicious")
+	else:
+		print("file",i,":","benign")
+#
