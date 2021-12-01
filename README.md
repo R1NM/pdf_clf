@@ -15,4 +15,4 @@ python2 trained.py
 ```
 
 input: pdf parsed w/ hidost<br>
-result: malicious=0 / benign=1
+result: list of malicious(0) / benign(1)
